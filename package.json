@@ -1,0 +1,35 @@
+{
+  "name": "gorest-api-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'specs/**.spec.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/register": "^7.10.1",
+    "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
+    "mocha": "^7.2.0",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "regenerator-runtime": "^0.13.5"
+  },
+  "mocha": {
+    "require": [
+      "dotenv/config",
+      "@babel/register"
+    ]
+  }
+}
