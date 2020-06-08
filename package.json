@@ -4,8 +4,9 @@
   "description": "API Integration Test framework",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'specs/**.spec.js'",
-    "server": "node_modules/.bin/json-server --watch data/mocks/db.json"
+    "test": "node_modules/.bin/mocha 'specs/**.spec.js'",
+    "test_local": "export NODE_ENV=LOCAL && node_modules/.bin/mocha 'specs/**.spec.js'",
+    "server": "node data/mocks/server.js"
   },
   "keywords": [],
   "author": "",
