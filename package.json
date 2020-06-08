@@ -4,7 +4,8 @@
   "description": "API Integration Test framework",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'specs/**.spec.js'"
+    "test": "mocha 'specs/**.spec.js'",
+    "server": "node_modules/.bin/json-server --watch data/mocks/db.json"
   },
   "keywords": [],
   "author": "",
