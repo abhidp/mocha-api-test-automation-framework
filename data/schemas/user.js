@@ -1,6 +1,5 @@
 export const getAllUsersResponseSchema = {
   type: 'array',
-  maxItems: 20,
   items: [
     {
       type: 'object',

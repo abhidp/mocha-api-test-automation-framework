@@ -2,23 +2,20 @@ import 'regenerator-runtime/runtime.js';
 import axios from 'axios';
 import chai from 'chai';
 import { expect } from 'chai';
+import * as data from '../data/test_data/user.js';
+import * as options from '../data/apiOptions/options';
+
 import {
   getAllUsersResponseSchema,
   getUserByIdResponseSchema,
-} from './schemas/user';
+} from '../data/schemas/user';
 
 chai.use(require('chai-json-schema-ajv'));
 
-const url = `${process.env.BASE_URL}/users`;
-const options = {
-  method: 'GET',
-  headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-  url,
-};
-
 describe('Test Users Endpoint', async () => {
   it('GET all users', async () => {
-    const response = await axios(options);
+    const opt = options.options('GET', '/users');
+    const response = await axios(opt);
 
     expect(response.status).to.equal(200);
     expect(response.headers['content-type']).to.contain('application/json');
@@ -26,9 +23,15 @@ describe('Test Users Endpoint', async () => {
     expect(response.data.result).to.be.jsonSchema(getAllUsersResponseSchema);
   });
 
+  it('POST user', async () => {
+    const opt = options.options('POST', '/users', data.POST_user_body);
+    const response = await axios(opt);
+    expect(response.status).to.equal(200);
+  });
+
   it('GET users by Id', async () => {
-    options.url = `${url}/1744`;
-    const response = await axios(options);
+    const opt = options.options('GET', '/users/1762');
+    const response = await axios(opt);
 
     expect(response.status).to.equal(200);
     expect(response.headers['content-type']).to.contain('application/json');
