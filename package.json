@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node_modules/.bin/mocha 'specs/**.spec.js'",
     "test_local": "export NODE_ENV=LOCAL && node_modules/.bin/mocha 'specs/**.spec.js'",
-    "server": "node data/mocks/server.js"
+    "server": "node_modules/.bin/nodemon data/mocks/server.js",
+    "resetDb": "node util/resetDb.js"
   },
   "keywords": [],
   "author": "",
@@ -24,7 +25,9 @@
     "chai-json-schema-ajv": "^5.0.0",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
+    "json-server": "^0.16.1",
     "mocha": "^7.2.0",
+    "nodemon": "^2.0.4",
     "regenerator-runtime": "^0.13.5"
   },
   "mocha": {
