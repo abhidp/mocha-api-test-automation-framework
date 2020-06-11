@@ -1,4 +1,5 @@
 require('dotenv').config();
+import qs from 'qs';
 var url, data;
 
 export const userURL = (path) => {
@@ -9,13 +10,15 @@ export const userURL = (path) => {
   return `${url}${path}`;
 };
 
-const headers = { Authorization: `Bearer ${process.env.TOKEN}` };
+const headers = {
+  Authorization: `Bearer ${process.env.TOKEN}`,
+};
 
 export function options(method, path, data) {
   return {
     method,
     url: userURL(path),
     headers,
-    data,
+    data: qs.stringify(data),
   };
 }
