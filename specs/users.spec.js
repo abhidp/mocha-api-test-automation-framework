@@ -37,7 +37,7 @@ describe('Test Users Endpoint', async () => {
     expect(response.data.result).to.be.jsonSchema(postUserResponseSchema);
   });
 
-  it('GET users by Id', async () => {
+  it('GET user by Id', async () => {
     const config = options.options('GET', `/users/${userId}`);
     const response = await axios(config);
 
