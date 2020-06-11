@@ -1,13 +1,23 @@
-import qs from 'qs';
-
-export const POST_user_body = qs.stringify({
-  first_name: 'Parry',
-  last_name: 'Hotter',
+export const POST_user_body = {
+  first_name: 'Luke',
+  last_name: 'Skywalker',
   gender: 'male',
-  dob: '2020-02-02',
-  email: 'parry.hotter@hogwarts.com',
+  dob: '2000-05-05',
+  email: 'Luke.Skywalker@starwars.universe',
   phone: '123-456-7890',
   website: 'http://parry.hotter.com/',
-  address: '99139 Bartoletti Run\nNew Ginoside, IA 91475',
+  address: 'Tatooine',
   status: 'active',
-});
+};
+
+export const PUT_user_body = {
+  first_name: 'Darth',
+  last_name: 'Vader',
+  gender: 'male',
+  dob: '2000-04-08',
+  email: 'Darth.Vader@starwars.universe',
+  phone: '111-222-333',
+  website: 'http://parry.hotter.com/',
+  address: 'Mercury',
+  status: 'active',
+};
