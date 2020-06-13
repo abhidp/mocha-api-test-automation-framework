@@ -1,6 +1,6 @@
-import axios from 'axios';
+const axios = require('axios').default;
 import * as options from '../api_config/options';
-const config = options.options('GET', '/users');
+const config: Object = options.options('GET', '/users');
 
 export const POST_post_body = async () => {
   return {

@@ -2,7 +2,7 @@ require('dotenv').config();
 import qs from 'qs';
 var url, data;
 
-export const userURL = (path) => {
+export const userURL = (path: string) => {
   process.env.NODE_ENV == 'LOCAL'
     ? (url = `${process.env.LOCAL_URL}`)
     : (url = `${process.env.BASE_URL}`);
@@ -14,7 +14,7 @@ const headers = {
   Authorization: `Bearer ${process.env.TOKEN}`,
 };
 
-export function options(method, path, data) {
+export function options(method: string, path: string, data: any = '') {
   return {
     method,
     url: userURL(path),

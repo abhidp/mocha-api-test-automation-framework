@@ -1,70 +1,67 @@
 import 'regenerator-runtime/runtime.js';
-import axios from 'axios';
+const axios = require('axios').default;
 import chai from 'chai';
 import { expect } from 'chai';
-import * as data from '../data/test_data/users.js';
+import * as data from '../data/test_data/posts';
 import * as options from '../data/api_config/options';
 
 import {
-  getAllUsersResponseSchema,
-  getUserByIdResponseSchema,
-  postUserResponseSchema,
-} from '../data/schemas/users';
+  getAllPostsResponseSchema,
+  postPostsResponseSchema,
+  getPostByIdResponseSchema,
+  putPostsResponseSchema,
+} from '../data/schemas/posts';
 
 chai.use(require('chai-json-schema-ajv'));
 
-describe('Test Users Endpoint', async () => {
-  var userId;
-
-  it('GET all users', async () => {
-    const config = options.options('GET', '/users');
+describe('Test Posts Endpoint', async () => {
+  let postId: string, post_data: Object;
+  it('GET all posts', async () => {
+    const config: Object = options.options('GET', '/posts');
     const response = await axios(config);
-
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
     expect(response.headers['content-type']).to.contain('application/json');
-    expect(response.data.result).to.be.jsonSchema(getAllUsersResponseSchema);
+    expect(response.data.result).to.be.jsonSchema(getAllPostsResponseSchema);
   });
 
-  it('POST user', async () => {
-    const config = options.options('POST', '/users', data.POST_user_body);
+  it('POST post', async () => {
+    post_data = await data.POST_post_body();
+    const config: Object = options.options('POST', '/posts', post_data);
     const response = await axios(config);
-    userId = response.data.result.id;
+    postId = response.data.result.id;
 
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
     expect(response.headers['content-type']).to.contain('application/json');
-    expect(response.data.result).to.be.jsonSchema(postUserResponseSchema);
+    expect(response.data.result).to.be.jsonSchema(postPostsResponseSchema);
   });
 
   it('GET user by Id', async () => {
-    const config = options.options('GET', `/users/${userId}`);
+    const config: Object = options.options('GET', `/posts/${postId}`);
     const response = await axios(config);
 
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
     expect(response.headers['content-type']).to.contain('application/json');
-    expect(response.data.result).to.include(data.POST_user_body);
-    expect(response.data.result).to.be.jsonSchema(getUserByIdResponseSchema);
+    expect(response.data.result).to.include(post_data);
+    expect(response.data.result).to.be.jsonSchema(getPostByIdResponseSchema);
   });
 
   it('PUT user by Id', async () => {
-    const config = options.options(
-      'PUT',
-      `/users/${userId}`,
-      data.PUT_user_body
-    );
+    const put_data = await data.PUT_post_body();
+    const config: Object = options.options('PUT', `/posts/${postId}`, put_data);
     const response = await axios(config);
 
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
     expect(response.headers['content-type']).to.contain('application/json');
-    expect(response.data.result).to.include(data.PUT_user_body);
-    expect(response.data.result).to.be.jsonSchema(postUserResponseSchema);
+    expect(response.data.result).to.include(put_data);
+    expect(response.data.result).to.be.jsonSchema(putPostsResponseSchema);
   });
 
   it('DELETE user by Id', async () => {
-    const config = options.options('DELETE', `/users/${userId}`);
+    const config: Object = options.options('DELETE', `/posts/${postId}`);
     const response = await axios(config);
 
     expect(response.status).to.equal(200);
