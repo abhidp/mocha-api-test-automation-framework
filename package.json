@@ -6,6 +6,8 @@
   "scripts": {
     "tslint": "tslint -c tslint.json -p tsconfig.json --fix",
     "tsc": "tsc -w",
+    "pre-push": "yarn run tslint",
+    "pre-commit": "yarn run tslint",
     "test": "node_modules/.bin/mocha-parallel-tests 'dist/specs/*.js'",
     "test_local": "yarn run resetDb && export NODE_ENV=LOCAL && node_modules/.bin/mocha-parallel-tests dist/specs/*.spec.js",
     "server": "node_modules/.bin/nodemon dist/data/mocks/server.js",
