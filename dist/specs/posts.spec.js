@@ -32,7 +32,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("regenerator-runtime/runtime.js");
-const axios = require('axios').default;
+const axios_1 = __importDefault(require("axios"));
 const chai_1 = __importDefault(require("chai"));
 const chai_2 = require("chai");
 const data = __importStar(require("../data/test_data/posts"));
@@ -40,19 +40,20 @@ const options = __importStar(require("../data/api_config/options"));
 const posts_1 = require("../data/schemas/posts");
 chai_1.default.use(require('chai-json-schema-ajv'));
 describe('Test Posts Endpoint', () => __awaiter(void 0, void 0, void 0, function* () {
-    let postId, post_data;
+    let postId;
+    let postData;
     it('GET all posts', () => __awaiter(void 0, void 0, void 0, function* () {
         const config = options.options('GET', '/posts');
-        const response = yield axios(config);
+        const response = yield axios_1.default(config);
         chai_2.expect(response.status).to.equal(200);
         chai_2.expect(response.data).to.be.an('object');
         chai_2.expect(response.headers['content-type']).to.contain('application/json');
         chai_2.expect(response.data.result).to.be.jsonSchema(posts_1.getAllPostsResponseSchema);
     }));
     it('POST post', () => __awaiter(void 0, void 0, void 0, function* () {
-        post_data = yield data.POST_post_body();
-        const config = options.options('POST', '/posts', post_data);
-        const response = yield axios(config);
+        postData = yield data.PostPostsBody();
+        const config = options.options('POST', '/posts', postData);
+        const response = yield axios_1.default(config);
         postId = response.data.result.id;
         chai_2.expect(response.status).to.equal(200);
         chai_2.expect(response.data).to.be.an('object');
@@ -61,26 +62,26 @@ describe('Test Posts Endpoint', () => __awaiter(void 0, void 0, void 0, function
     }));
     it('GET user by Id', () => __awaiter(void 0, void 0, void 0, function* () {
         const config = options.options('GET', `/posts/${postId}`);
-        const response = yield axios(config);
+        const response = yield axios_1.default(config);
         chai_2.expect(response.status).to.equal(200);
         chai_2.expect(response.data).to.be.an('object');
         chai_2.expect(response.headers['content-type']).to.contain('application/json');
-        chai_2.expect(response.data.result).to.include(post_data);
+        chai_2.expect(response.data.result).to.include(postData);
         chai_2.expect(response.data.result).to.be.jsonSchema(posts_1.getPostByIdResponseSchema);
     }));
     it('PUT user by Id', () => __awaiter(void 0, void 0, void 0, function* () {
-        const put_data = yield data.PUT_post_body();
-        const config = options.options('PUT', `/posts/${postId}`, put_data);
-        const response = yield axios(config);
+        const putData = yield data.PutPostsBody();
+        const config = options.options('PUT', `/posts/${postId}`, putData);
+        const response = yield axios_1.default(config);
         chai_2.expect(response.status).to.equal(200);
         chai_2.expect(response.data).to.be.an('object');
         chai_2.expect(response.headers['content-type']).to.contain('application/json');
-        chai_2.expect(response.data.result).to.include(put_data);
+        chai_2.expect(response.data.result).to.include(putData);
         chai_2.expect(response.data.result).to.be.jsonSchema(posts_1.putPostsResponseSchema);
     }));
     it('DELETE user by Id', () => __awaiter(void 0, void 0, void 0, function* () {
         const config = options.options('DELETE', `/posts/${postId}`);
-        const response = yield axios(config);
+        const response = yield axios_1.default(config);
         chai_2.expect(response.status).to.equal(200);
         chai_2.expect(response.data).to.be.an('object');
         chai_2.expect(response.headers['content-type']).to.contain('application/json');

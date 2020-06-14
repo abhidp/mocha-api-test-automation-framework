@@ -27,27 +27,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PUT_post_body = exports.POST_post_body = void 0;
-const axios = require('axios').default;
+exports.PutPostsBody = exports.PostPostsBody = void 0;
+const axios_1 = __importDefault(require("axios"));
 const options = __importStar(require("../api_config/options"));
 const config = options.options('GET', '/users');
-exports.POST_post_body = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.PostPostsBody = () => __awaiter(void 0, void 0, void 0, function* () {
     return {
-        user_id: (yield axios(config)).data.result[0].id,
+        user_id: (yield axios_1.default(config)).data.result[0].id,
         title: 'Create a new New Post',
         body: 'This endpoint creates a new post using the POST method',
     };
 });
-exports.PUT_post_body = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.PutPostsBody = () => __awaiter(void 0, void 0, void 0, function* () {
     return {
-        user_id: (yield axios(config)).data.result[0].id,
+        user_id: (yield axios_1.default(config)).data.result[0].id,
         title: 'Edit the newly created Post',
         body: 'This endpoint edits the post using the PUT method',
     };
 });
 module.exports = {
-    POST_post_body: exports.POST_post_body,
-    PUT_post_body: exports.PUT_post_body,
+    PostPostsBody: exports.PostPostsBody,
+    PutPostsBody: exports.PutPostsBody,
 };
 //# sourceMappingURL=posts.js.map

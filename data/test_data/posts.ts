@@ -1,8 +1,8 @@
-const axios = require('axios').default;
+import axios from 'axios';
 import * as options from '../api_config/options';
-const config: Object = options.options('GET', '/users');
+const config: object = options.options('GET', '/users');
 
-export const POST_post_body = async () => {
+export const PostPostsBody = async () => {
   return {
     user_id: (await axios(config)).data.result[0].id,
     title: 'Create a new New Post',
@@ -10,7 +10,7 @@ export const POST_post_body = async () => {
   };
 };
 
-export const PUT_post_body = async () => {
+export const PutPostsBody = async () => {
   return {
     user_id: (await axios(config)).data.result[0].id,
     title: 'Edit the newly created Post',
@@ -19,6 +19,6 @@ export const PUT_post_body = async () => {
 };
 
 module.exports = {
-  POST_post_body,
-  PUT_post_body,
+  PostPostsBody,
+  PutPostsBody,
 };

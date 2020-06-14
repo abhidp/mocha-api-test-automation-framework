@@ -4,7 +4,7 @@
   "description": "API Integration Test framework",
   "main": "index.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "tslint": "tslint -c tslint.json -p tsconfig.json --fix",
     "tsc": "tsc -w",
     "test": "node_modules/.bin/mocha-parallel-tests 'dist/specs/*.js'",
     "test_local": "yarn run resetDb && export NODE_ENV=LOCAL && node_modules/.bin/mocha-parallel-tests dist/specs/*.spec.js",
@@ -22,6 +22,7 @@
     "@babel/register": "^7.10.1",
     "@types/chai": "^4.2.11",
     "@types/chai-json-schema": "^1.4.6",
+    "@types/json-server": "^0.14.2",
     "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.13",
     "@types/qs": "^6.9.3",
@@ -39,6 +40,7 @@
     "regenerator-runtime": "^0.13.5",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
+    "tslint-no-unused-expression-chai": "^0.1.4",
     "typescript": "^3.9.5"
   },
   "mocha": {
