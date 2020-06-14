@@ -13,6 +13,7 @@
     "server": "node_modules/.bin/nodemon dist/data/mocks/server.js",
     "resetDb": "node dist/util/resetDb.js"
   },
+  "pre-commit":{"run":[ "tslint"]},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -39,6 +40,7 @@
     "mocha-parallel-tests": "^2.3.0",
     "mochawesome": "^6.1.1",
     "nodemon": "^2.0.4",
+    "pre-commit": "^1.2.2",
     "regenerator-runtime": "^0.13.5",
     "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
