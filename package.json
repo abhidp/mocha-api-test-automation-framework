@@ -13,7 +13,11 @@
     "server": "node_modules/.bin/nodemon dist/data/mocks/server.js",
     "resetDb": "node dist/util/resetDb.js"
   },
-  "pre-commit":{"run":[ "tslint"]},
+  "pre-commit": {
+    "run": [
+      "tslint"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
