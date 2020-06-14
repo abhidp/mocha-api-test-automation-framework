@@ -1,5 +1,5 @@
 import 'regenerator-runtime/runtime.js';
-const axios = require('axios').default;
+import axios from 'axios';
 import chai from 'chai';
 import { expect } from 'chai';
 import * as data from '../data/test_data/posts';
@@ -15,9 +15,10 @@ import {
 chai.use(require('chai-json-schema-ajv'));
 
 describe('Test Posts Endpoint', async () => {
-  let postId: string, post_data: Object;
+  let postId: string;
+  let postData: object;
   it('GET all posts', async () => {
-    const config: Object = options.options('GET', '/posts');
+    const config: object = options.options('GET', '/posts');
     const response = await axios(config);
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
@@ -26,8 +27,8 @@ describe('Test Posts Endpoint', async () => {
   });
 
   it('POST post', async () => {
-    post_data = await data.POST_post_body();
-    const config: Object = options.options('POST', '/posts', post_data);
+    postData = await data.PostPostsBody();
+    const config: object = options.options('POST', '/posts', postData);
     const response = await axios(config);
     postId = response.data.result.id;
 
@@ -38,30 +39,30 @@ describe('Test Posts Endpoint', async () => {
   });
 
   it('GET user by Id', async () => {
-    const config: Object = options.options('GET', `/posts/${postId}`);
+    const config: object = options.options('GET', `/posts/${postId}`);
     const response = await axios(config);
 
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
     expect(response.headers['content-type']).to.contain('application/json');
-    expect(response.data.result).to.include(post_data);
+    expect(response.data.result).to.include(postData);
     expect(response.data.result).to.be.jsonSchema(getPostByIdResponseSchema);
   });
 
   it('PUT user by Id', async () => {
-    const put_data = await data.PUT_post_body();
-    const config: Object = options.options('PUT', `/posts/${postId}`, put_data);
+    const putData = await data.PutPostsBody();
+    const config: object = options.options('PUT', `/posts/${postId}`, putData);
     const response = await axios(config);
 
     expect(response.status).to.equal(200);
     expect(response.data).to.be.an('object');
     expect(response.headers['content-type']).to.contain('application/json');
-    expect(response.data.result).to.include(put_data);
+    expect(response.data.result).to.include(putData);
     expect(response.data.result).to.be.jsonSchema(putPostsResponseSchema);
   });
 
   it('DELETE user by Id', async () => {
-    const config: Object = options.options('DELETE', `/posts/${postId}`);
+    const config: object = options.options('DELETE', `/posts/${postId}`);
     const response = await axios(config);
 
     expect(response.status).to.equal(200);

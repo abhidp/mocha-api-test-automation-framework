@@ -1,4 +1,4 @@
-export const POST_user_body = {
+export const PostUsersBody = {
   first_name: 'Luke',
   last_name: 'Skywalker',
   gender: 'male',
@@ -9,8 +9,7 @@ export const POST_user_body = {
   address: 'Tatooine',
   status: 'active',
 };
-
-export const PUT_user_body = {
+export const PutUsersBody = {
   first_name: 'Darth',
   last_name: 'Vader',
   gender: 'male',

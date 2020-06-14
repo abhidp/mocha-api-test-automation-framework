@@ -1,9 +1,10 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 import qs from 'qs';
-var url, data;
+let url;
 
 export const userURL = (path: string) => {
-  process.env.NODE_ENV == 'LOCAL'
+  process.env.NODE_ENV === 'LOCAL'
     ? (url = `${process.env.LOCAL_URL}`)
     : (url = `${process.env.BASE_URL}`);
 
