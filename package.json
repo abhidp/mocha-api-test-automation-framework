@@ -60,8 +60,8 @@
       "reportPageTitle=API Test Report",
       "reportDir=test_report",
       "reportFilename=test_report",
-      "quiet=true",
-      "json=false"
+      "json=false",
+      "quiet=true"
     ]
   }
 }
