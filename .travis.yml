@@ -1,6 +1,16 @@
 language: node_js
+
 node_js:
   - 'stable'
+
+  cache:
+  yarn: true
+  directories:
+    - node_modules
+
+    script:
+  - yarn install --production
+  - yarn test
 
 notifications:
   slack: abhicadabra:hUvWK1aw52KFP9nExLOPe3ZP
