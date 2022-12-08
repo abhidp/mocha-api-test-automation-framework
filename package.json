@@ -43,7 +43,7 @@
     "mocha": "^7.2.0",
     "mocha-parallel-tests": "^2.3.0",
     "mochawesome": "^6.1.1",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "regenerator-runtime": "^0.13.5"
   },
   "mocha": {
